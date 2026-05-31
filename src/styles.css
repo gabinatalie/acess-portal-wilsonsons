@@ -64,6 +64,7 @@
   --color-cyan: var(--cyan);
   --color-cyan-foreground: var(--cyan-foreground);
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Inter", ui-sans-serif, system-ui, sans-serif;
 }
 
 html { scroll-behavior: smooth; }
