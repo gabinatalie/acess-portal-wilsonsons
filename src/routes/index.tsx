@@ -28,11 +28,8 @@ function Index() {
       {/* NAV */}
       <header className="sticky top-0 z-50 border-b border-border/60 bg-background/85 backdrop-blur">
         <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
-          <a href="#top" className="flex items-center gap-2 text-navy">
-            <span className="grid h-9 w-9 place-items-center rounded-xl bg-navy text-navy-foreground">
-              <Anchor className="h-5 w-5" />
-            </span>
-            <span className="text-lg font-bold tracking-tight">PortAccess</span>
+          <a href="#top" className="flex items-center">
+            <img src={wilsonLogo} alt="Wilson, Sons" className="h-10 w-auto" />
           </a>
           <a href="#agendamento">
             <Button className="rounded-full bg-cyan text-cyan-foreground hover:bg-cyan/90 font-semibold px-5">
