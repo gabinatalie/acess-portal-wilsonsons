@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Shirt, HardHat, AlertTriangle, Anchor, CalendarCheck, ShieldCheck, ArrowRight } from "lucide-react";
 import heroPort from "@/assets/hero-port.jpg";
+import wilsonLogo from "@/assets/wilson-sons-logo.png";
 import { Button } from "@/components/ui/button";
 
 export const Route = createFileRoute("/")({
