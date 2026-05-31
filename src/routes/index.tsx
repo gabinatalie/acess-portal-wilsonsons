@@ -143,11 +143,8 @@ function Index() {
         <div className="mx-auto max-w-7xl px-6 py-16">
           <div className="grid gap-10 md:grid-cols-4">
             <div>
-              <div className="flex items-center gap-2">
-                <span className="grid h-9 w-9 place-items-center rounded-xl bg-cyan text-cyan-foreground">
-                  <Anchor className="h-5 w-5" />
-                </span>
-                <span className="text-lg font-bold">PortAccess</span>
+              <div className="inline-block rounded-xl bg-white p-3">
+                <img src={wilsonLogo} alt="Wilson, Sons" className="h-9 w-auto" />
               </div>
               <p className="mt-4 text-sm text-white/70">Portal de credenciamento e segurança operacional portuária.</p>
             </div>
