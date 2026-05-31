@@ -162,14 +162,16 @@ function Index() {
 }
 
 function InfoCard({ icon, title, desc, tone }: { icon: React.ReactNode; title: string; desc: string; tone: "danger" | "cyan" | "navy" }) {
-  const toneClass =
-    tone === "danger" ? "bg-destructive/10 text-destructive" : tone === "cyan" ? "bg-cyan/15 text-navy" : "bg-navy/10 text-navy";
   return (
-    <div className="group rounded-2xl border border-border bg-card p-6 transition-all hover:-translate-y-1 hover:border-cyan/50 hover:shadow-xl hover:shadow-navy/10">
-      <div className="flex items-start gap-4">
-        <span className={`grid h-12 w-12 shrink-0 place-items-center rounded-xl ${toneClass}`}>{icon}</span>
+    <div className="group relative overflow-hidden rounded-2xl border-2 border-cyan/40 bg-card p-6 shadow-lg shadow-cyan/10 transition-all hover:-translate-y-1 hover:border-cyan hover:shadow-2xl hover:shadow-cyan/30">
+      <span className="absolute inset-y-0 left-0 w-1.5 bg-cyan" />
+      <div className="absolute -right-12 -top-12 h-32 w-32 rounded-full bg-cyan/10 blur-2xl transition-opacity group-hover:bg-cyan/25" />
+      <div className="relative flex items-start gap-4">
+        <span className="grid h-14 w-14 shrink-0 place-items-center rounded-xl bg-cyan text-cyan-foreground shadow-md shadow-cyan/40 ring-4 ring-cyan/15">
+          {icon}
+        </span>
         <div>
-          <h3 className="text-lg font-semibold text-navy">{title}</h3>
+          <h3 className="text-lg font-bold text-navy">{title}</h3>
           <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">{desc}</p>
         </div>
       </div>
