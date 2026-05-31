@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Shirt, HardHat, AlertTriangle, Anchor, CalendarCheck, ShieldCheck, ArrowRight } from "lucide-react";
+import { Shirt, HardHat, AlertTriangle, CalendarCheck, ShieldCheck, ArrowRight } from "lucide-react";
 import heroPort from "@/assets/hero-port.jpg";
+import wilsonLogo from "@/assets/wilson-sons-logo.png";
 import { Button } from "@/components/ui/button";
 
 export const Route = createFileRoute("/")({
@@ -27,11 +28,8 @@ function Index() {
       {/* NAV */}
       <header className="sticky top-0 z-50 border-b border-border/60 bg-background/85 backdrop-blur">
         <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
-          <a href="#top" className="flex items-center gap-2 text-navy">
-            <span className="grid h-9 w-9 place-items-center rounded-xl bg-navy text-navy-foreground">
-              <Anchor className="h-5 w-5" />
-            </span>
-            <span className="text-lg font-bold tracking-tight">PortAccess</span>
+          <a href="#top" className="flex items-center">
+            <img src={wilsonLogo} alt="Wilson, Sons" className="h-10 w-auto" />
           </a>
           <a href="#agendamento">
             <Button className="rounded-full bg-cyan text-cyan-foreground hover:bg-cyan/90 font-semibold px-5">
@@ -87,7 +85,7 @@ function Index() {
             <div className="aspect-video w-full">
               <iframe
                 className="h-full w-full"
-                src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+                src="https://www.youtube.com/embed/rB6jcirH848"
                 title="Vídeo de Integração de Segurança"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
@@ -130,8 +128,8 @@ function Index() {
           </div>
           <div className="mt-12 overflow-hidden rounded-3xl border border-border bg-background p-2 shadow-xl shadow-navy/10">
             <iframe
-              src="https://docs.google.com/forms/d/e/1FAIpQLSf6_PLACEHOLDER/viewform?embedded=true"
-              className="h-[820px] w-full rounded-2xl"
+              src="https://docs.google.com/forms/d/e/1FAIpQLScRlIx-L5OH76PvOqChTTVgRZF6bL6po1FoQ8DNPl54ZcMCLA/viewform?embedded=true"
+              className="h-[1100px] w-full rounded-2xl"
               title="Formulário de Agendamento"
             >
               Carregando…
@@ -145,11 +143,8 @@ function Index() {
         <div className="mx-auto max-w-7xl px-6 py-16">
           <div className="grid gap-10 md:grid-cols-4">
             <div>
-              <div className="flex items-center gap-2">
-                <span className="grid h-9 w-9 place-items-center rounded-xl bg-cyan text-cyan-foreground">
-                  <Anchor className="h-5 w-5" />
-                </span>
-                <span className="text-lg font-bold">PortAccess</span>
+              <div className="inline-block rounded-xl bg-white p-3">
+                <img src={wilsonLogo} alt="Wilson, Sons" className="h-9 w-auto" />
               </div>
               <p className="mt-4 text-sm text-white/70">Portal de credenciamento e segurança operacional portuária.</p>
             </div>
@@ -167,14 +162,16 @@ function Index() {
 }
 
 function InfoCard({ icon, title, desc, tone }: { icon: React.ReactNode; title: string; desc: string; tone: "danger" | "cyan" | "navy" }) {
-  const toneClass =
-    tone === "danger" ? "bg-destructive/10 text-destructive" : tone === "cyan" ? "bg-cyan/15 text-navy" : "bg-navy/10 text-navy";
   return (
-    <div className="group rounded-2xl border border-border bg-card p-6 transition-all hover:-translate-y-1 hover:border-cyan/50 hover:shadow-xl hover:shadow-navy/10">
-      <div className="flex items-start gap-4">
-        <span className={`grid h-12 w-12 shrink-0 place-items-center rounded-xl ${toneClass}`}>{icon}</span>
+    <div className="group relative overflow-hidden rounded-2xl border-2 border-cyan/40 bg-card p-6 shadow-lg shadow-cyan/10 transition-all hover:-translate-y-1 hover:border-cyan hover:shadow-2xl hover:shadow-cyan/30">
+      <span className="absolute inset-y-0 left-0 w-1.5 bg-cyan" />
+      <div className="absolute -right-12 -top-12 h-32 w-32 rounded-full bg-cyan/10 blur-2xl transition-opacity group-hover:bg-cyan/25" />
+      <div className="relative flex items-start gap-4">
+        <span className="grid h-14 w-14 shrink-0 place-items-center rounded-xl bg-cyan text-cyan-foreground shadow-md shadow-cyan/40 ring-4 ring-cyan/15">
+          {icon}
+        </span>
         <div>
-          <h3 className="text-lg font-semibold text-navy">{title}</h3>
+          <h3 className="text-lg font-bold text-navy">{title}</h3>
           <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">{desc}</p>
         </div>
       </div>
