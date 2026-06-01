@@ -77,14 +77,18 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
+      { title: "Wilson Sons Portal de Agendamento" },
+      { name: "description", content: "Projeto desenvolvido por Gabrielle Alves para fins educativos na KODIE Academy" },
       { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { property: "og:title", content: "Wilson Sons Portal de Agendamento" },
+      { property: "og:description", content: "Projeto desenvolvido por Gabrielle Alves para fins educativos na KODIE Academy" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:title", content: "Wilson Sons Portal de Agendamento" },
+      { name: "twitter:description", content: "Projeto desenvolvido por Gabrielle Alves para fins educativos na KODIE Academy" },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/2632b2c0-11b3-49c6-8af7-3293e16a95a5/id-preview-06c0afd7--1e7ef92a-5184-4687-bb35-094fe6c1e06e.lovable.app-1780348759433.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/2632b2c0-11b3-49c6-8af7-3293e16a95a5/id-preview-06c0afd7--1e7ef92a-5184-4687-bb35-094fe6c1e06e.lovable.app-1780348759433.png" },
     ],
     links: [
       {
