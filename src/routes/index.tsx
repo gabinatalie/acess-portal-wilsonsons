@@ -1,7 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
 import {
-  Shirt,
-  HardHat,
   AlertTriangle,
   CalendarCheck,
   ShieldCheck,
@@ -10,12 +8,14 @@ import {
   Instagram,
   Youtube,
   Home,
-  ShieldAlert,
-  CircleDot,
+  Anchor,
+  ExternalLink,
 } from "lucide-react";
-import heroPort from "@/assets/hero-port.jpg";
+import heroAsset from "@/assets/hero-port-new.jpg.asset.json";
+import safetyEpi from "@/assets/safety-epi.webp.asset.json";
+import safetyTeam from "@/assets/safety-team.jpg.asset.json";
+import safetyEmergency from "@/assets/safety-emergency.png.asset.json";
 import wilsonLogo from "@/assets/wilson-sons-logo.png";
-import safetyAttire from "@/assets/safety-attire.jpg";
 import { Button } from "@/components/ui/button";
 import { Reveal } from "@/components/Reveal";
 
@@ -33,7 +33,7 @@ export const Route = createFileRoute("/")({
         property: "og:description",
         content: "Credenciamento e integração de segurança obrigatórios para visitas.",
       },
-      { property: "og:image", content: heroPort },
+      { property: "og:image", content: heroAsset.url },
     ],
     links: [
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -50,14 +50,14 @@ export const Route = createFileRoute("/")({
 function Index() {
   return (
     <div className="min-h-screen bg-background font-sans text-foreground antialiased">
-      {/* NAV */}
-      <header className="sticky top-0 z-50 border-b border-border/60 bg-background/85 backdrop-blur-md">
-        <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 md:px-10">
-          <a href="#top" className="flex items-center">
-            <img src={wilsonLogo} alt="Wilson, Sons" className="h-12 w-auto" />
+      {/* NAV — Glassmorphism */}
+      <header className="sticky top-0 z-50 border-b border-white/40 bg-white/60 backdrop-blur-md supports-[backdrop-filter]:bg-white/55 shadow-[0_4px_30px_-12px_rgba(0,51,88,0.08)]">
+        <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-3 md:px-10">
+          <a href="#top" className="flex items-center px-2">
+            <img src={wilsonLogo} alt="Wilson, Sons" className="h-16 w-auto" />
           </a>
           <a href="#agendamento">
-            <Button className="h-11 rounded-full bg-cyan px-6 font-semibold text-cyan-foreground shadow-md shadow-cyan/30 hover:bg-cyan/90">
+            <Button className="h-11 rounded-full bg-cyan px-6 font-semibold text-cyan-foreground shadow-md shadow-cyan/30 transition-transform hover:bg-cyan/90 hover:scale-[1.02]">
               Agendar Visita
             </Button>
           </a>
@@ -68,43 +68,42 @@ function Index() {
       <section id="top" className="relative overflow-hidden">
         <div className="absolute inset-0">
           <img
-            src={heroPort}
+            src={heroAsset.url}
             alt="Operações portuárias Wilson Sons"
-            width={1920}
-            height={1280}
             className="h-full w-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-navy/95 via-navy/80 to-navy/40" />
+          <div className="absolute inset-0 bg-gradient-to-r from-navy/95 via-navy/80 to-navy/55" />
+          <div className="absolute inset-0 bg-black/30" />
         </div>
-        <div className="relative mx-auto max-w-7xl px-6 py-28 md:px-10 md:py-40">
+        <div className="relative mx-auto max-w-7xl px-6 py-28 md:px-10 md:py-44">
           <div className="max-w-3xl text-white">
             <span className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] backdrop-blur">
               <ShieldCheck className="h-3.5 w-3.5 text-cyan" /> Credenciamento Obrigatório
             </span>
             <h1 className="mt-6 font-display text-4xl font-extrabold leading-[1.05] tracking-tight sm:text-5xl md:text-6xl lg:text-7xl">
-              Portal de Acesso <span className="text-cyan">Operacional</span>
+              <span className="hero-title-gradient">Portal de Acesso Operacional</span>
             </h1>
-            <p className="mt-6 max-w-2xl text-base leading-relaxed text-white/85 sm:text-lg">
+            <p className="mt-6 max-w-2xl text-base leading-relaxed text-white/90 sm:text-lg">
               Na Wilson Sons, a segurança é o nosso pilar fundamental. Para ingressar em
               nossas operações portuárias, todo visitante deve concluir a integração de
               segurança e o credenciamento prévio.
             </p>
             <div className="mt-10 flex flex-wrap gap-4">
-              <a href="#agendamento">
-                <Button
-                  size="lg"
-                  className="h-12 rounded-full bg-cyan px-7 font-semibold text-cyan-foreground shadow-lg shadow-cyan/30 hover:bg-cyan/90"
-                >
-                  Iniciar Credenciamento <ArrowRight className="ml-2 h-4 w-4" />
-                </Button>
-              </a>
               <a href="#integracao">
                 <Button
                   size="lg"
-                  variant="outline"
-                  className="h-12 rounded-full border-white/40 bg-transparent px-7 font-semibold text-white hover:bg-white/10 hover:text-white"
+                  className="h-12 rounded-full bg-cyan px-7 font-semibold text-cyan-foreground shadow-lg shadow-cyan/30 transition-transform hover:bg-cyan/90 hover:scale-[1.02]"
                 >
-                  Ver Integração
+                  Ver Integração <ArrowRight className="ml-2 h-4 w-4" />
+                </Button>
+              </a>
+              <a href="https://www.wilsonsons.com.br" target="_blank" rel="noopener noreferrer">
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="h-12 rounded-full border-white/40 bg-transparent px-7 font-semibold text-white transition-transform hover:bg-white/10 hover:text-white hover:scale-[1.02]"
+                >
+                  Institucional <ExternalLink className="ml-2 h-4 w-4" />
                 </Button>
               </a>
             </div>
@@ -112,91 +111,116 @@ function Index() {
         </div>
       </section>
 
-      {/* INTEGRAÇÃO */}
-      <section id="integracao" className="relative mx-auto max-w-7xl px-6 py-24 md:px-10 md:py-32">
-        <Reveal>
-          <div className="mx-auto max-w-2xl text-center">
-            <span className="text-xs font-semibold uppercase tracking-[0.22em] text-cyan">
-              Integração de Segurança
-            </span>
-            <h2 className="mt-3 font-display text-3xl font-extrabold tracking-tight text-navy sm:text-4xl md:text-5xl">
-              Antes de entrar, assista e leia.
-            </h2>
-            <p className="mt-4 text-muted-foreground">
-              A integração é obrigatória para todos os visitantes e prestadores de serviço.
-            </p>
-          </div>
-        </Reveal>
-
-        {/* VIDEO */}
-        <Reveal delay={120}>
-          <div className="mx-auto mt-14 max-w-5xl">
-            <div className="relative aspect-video w-full overflow-hidden rounded-2xl shadow-2xl shadow-navy/20 ring-1 ring-navy/10">
-              <iframe
-                className="absolute inset-0 h-full w-full"
-                src="https://www.youtube.com/embed/rB6jcirH848?vq=hd1080&rel=0&modestbranding=1"
-                title="Vídeo de Integração de Segurança Wilson Sons"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowFullScreen
-              />
-            </div>
-          </div>
-        </Reveal>
-
-        {/* BENTO GRID */}
-        <div className="mt-16 grid gap-6 md:grid-cols-3">
-          <Reveal delay={0}>
-            <BentoCard
-              eyebrow="01 · Vestimenta"
-              title="Vestimenta Exigida"
-              icon={<Shirt className="h-6 w-6" />}
-              image={safetyAttire}
-              accent="Proibido bermudas, regatas, chinelos."
-              body="Utilize calça comprida e calçados fechados em toda a área operacional."
-            />
-          </Reveal>
-          <Reveal delay={120}>
-            <EpiCard />
-          </Reveal>
-          <Reveal delay={240}>
-            <EmergencyCard />
-          </Reveal>
-        </div>
-      </section>
-
-      {/* AGENDAMENTO */}
-      <section id="agendamento" className="relative overflow-hidden bg-secondary py-24 md:py-32">
-        <div className="pointer-events-none absolute inset-0 opacity-[0.04]">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,oklch(0.32_0.09_247)_0%,transparent_50%)]" />
-        </div>
-        <div className="relative mx-auto max-w-4xl px-6 md:px-10">
+      {/* INTEGRAÇÃO — split sections */}
+      <section id="integracao" className="relative dot-grid">
+        <div className="mx-auto max-w-7xl px-6 py-24 md:px-10 md:py-32">
           <Reveal>
-            <div className="text-center">
-              <span className="inline-flex items-center gap-2 rounded-full bg-navy/5 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-navy">
-                <CalendarCheck className="h-3.5 w-3.5" /> Formulário Oficial
+            <div className="mx-auto max-w-2xl text-center">
+              <span className="text-xs font-semibold uppercase tracking-[0.22em] text-cyan">
+                Integração de Segurança
               </span>
-              <h2 className="mt-4 font-display text-3xl font-extrabold tracking-tight text-navy sm:text-4xl md:text-5xl">
-                Solicite seu Acesso
+              <h2 className="mt-3 font-display text-3xl font-extrabold tracking-tight text-navy sm:text-4xl md:text-5xl">
+                Antes de entrar, assista e leia.
               </h2>
               <p className="mt-4 text-muted-foreground">
-                Preencha o formulário abaixo. Você receberá um e-mail com as instruções de
-                comparecimento.
+                A integração é obrigatória para todos os visitantes e prestadores de serviço.
               </p>
             </div>
           </Reveal>
-          <Reveal delay={150}>
-            <div className="mt-12 rounded-3xl border border-navy/10 bg-white p-3 shadow-2xl shadow-navy/15 ring-1 ring-white">
-              <div className="overflow-hidden rounded-2xl bg-gradient-to-b from-secondary/40 to-white p-1">
+
+          {/* VIDEO HD */}
+          <Reveal delay={120}>
+            <div className="mx-auto mt-14 max-w-5xl">
+              <div className="relative aspect-video w-full overflow-hidden rounded-2xl soft-shadow ring-1 ring-navy/5">
+                <iframe
+                  className="absolute inset-0 h-full w-full"
+                  src="https://www.youtube.com/embed/rB6jcirH848?vq=hd1080&hd=1&rel=0&modestbranding=1"
+                  title="Vídeo de Integração de Segurança Wilson Sons"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowFullScreen
+                />
+              </div>
+            </div>
+          </Reveal>
+
+          {/* SPLIT SECTIONS */}
+          <div className="mt-24 space-y-24">
+            <SplitSection
+              eyebrow="01 · EPIs Obrigatórios"
+              title="Equipamentos de Proteção Individual"
+              body="O uso de EPIs é obrigatório em toda a área operacional: capacete, protetor auricular, óculos de proteção, colete refletivo e calçado fechado de segurança. Sem o conjunto completo, o acesso ao pátio não é liberado."
+              bullets={["Capacete certificado", "Protetor auricular", "Colete e calça refletivos"]}
+              image={safetyEpi.url}
+              reverse={false}
+            />
+            <SplitSection
+              eyebrow="02 · Vestimenta e Equipe"
+              title="Vestimenta Exigida no Pátio"
+              body="Proibido o uso de bermudas, regatas e chinelos. Utilize uniforme de manga longa, calça comprida e calçados de segurança. Visitantes recebem o kit ao se apresentar na portaria após a integração."
+              bullets={["Manga longa e calça comprida", "Calçado fechado de segurança", "Identificação visível"]}
+              image={safetyTeam.url}
+              reverse={true}
+            />
+            <SplitSection
+              eyebrow="03 · Conduta em Emergências"
+              title="Protocolo de Emergência"
+              body="Ao soar o alarme, mantenha a calma e siga rigorosamente o anfitrião responsável até o ponto de encontro indicado. Não retorne ao local até liberação oficial do brigadista da operação."
+              bullets={["Não se separe do grupo", "Use as rotas sinalizadas", "Aguarde liberação oficial"]}
+              image={safetyEmergency.url}
+              reverse={false}
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* AGENDAMENTO — Sticky scroll */}
+      <section id="agendamento" className="relative overflow-hidden bg-secondary/40 dot-grid py-24 md:py-32">
+        <div className="relative mx-auto max-w-7xl px-6 md:px-10">
+          <div className="grid gap-12 md:grid-cols-2 md:gap-16">
+            {/* LEFT — Sticky */}
+            <div className="md:sticky md:top-28 md:self-start">
+              <Reveal>
+                <span className="inline-flex items-center gap-2 rounded-full bg-navy/5 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-navy">
+                  <CalendarCheck className="h-3.5 w-3.5" /> Formulário Oficial
+                </span>
+                <h2 className="mt-4 font-display text-3xl font-extrabold tracking-tight text-navy sm:text-4xl md:text-5xl">
+                  Solicite seu Acesso
+                </h2>
+                <p className="mt-5 text-base leading-relaxed text-muted-foreground">
+                  Preencha o formulário ao lado para iniciar seu credenciamento. Você receberá
+                  um e-mail com as instruções de comparecimento e a confirmação da sua visita
+                  ao terminal Wilson Sons.
+                </p>
+                <ul className="mt-8 space-y-4 text-sm">
+                  {[
+                    "Resposta em até 48h úteis",
+                    "Confirmação automática por e-mail",
+                    "Suporte direto da equipe operacional",
+                  ].map((t) => (
+                    <li key={t} className="flex items-center gap-3 text-navy/85">
+                      <span className="grid h-7 w-7 place-items-center rounded-full bg-cyan/15 text-cyan">
+                        <ShieldCheck className="h-4 w-4" />
+                      </span>
+                      {t}
+                    </li>
+                  ))}
+                </ul>
+              </Reveal>
+            </div>
+
+            {/* RIGHT — Scrollable */}
+            <Reveal delay={120}>
+              <div className="rounded-3xl bg-white p-3 soft-shadow ring-1 ring-white">
                 <iframe
                   src="https://docs.google.com/forms/d/e/1FAIpQLScRlIx-L5OH76PvOqChTTVgRZF6bL6po1FoQ8DNPl54ZcMCLA/viewform?embedded=true"
-                  className="h-[1100px] w-full rounded-xl bg-white"
+                  className="h-[1300px] w-full rounded-2xl bg-white"
                   title="Formulário de Agendamento Wilson Sons"
                 >
                   Carregando…
                 </iframe>
               </div>
-            </div>
-          </Reveal>
+            </Reveal>
+          </div>
         </div>
       </section>
 
@@ -223,7 +247,7 @@ function Index() {
                     key={label}
                     href="#"
                     aria-label={label}
-                    className="grid h-10 w-10 place-items-center rounded-full border border-white/15 text-white/75 transition-colors hover:border-cyan hover:bg-cyan/10 hover:text-cyan"
+                    className="grid h-10 w-10 place-items-center rounded-full border border-cyan/40 text-cyan transition-all hover:border-cyan hover:bg-cyan/15 hover:scale-105"
                   >
                     <Icon className="h-4 w-4" />
                   </a>
@@ -234,8 +258,9 @@ function Index() {
             <FooterCol title="Operações" links={["Credenciamento", "Integração", "Visitas Técnicas", "Fornecedores"]} />
           </div>
           <div className="mt-14 border-t border-white/10 pt-8 text-center">
-            <p className="text-xs tracking-wide text-white/70">
-              Projeto desenvolvido para fins educativos na KODIE Academy
+            <p className="flex items-center justify-center gap-2 text-xs tracking-wide text-white/70">
+              <Anchor className="h-3.5 w-3.5 text-cyan" />
+              Projeto desenvolvido por Gabrielle Alves para fins educativos na KODIE Academy
             </p>
           </div>
         </div>
@@ -244,126 +269,57 @@ function Index() {
   );
 }
 
-/* ---------- Bento cards ---------- */
+/* ---------- Split section ---------- */
 
-function CardShell({ children, className = "" }: { children: React.ReactNode; className?: string }) {
-  return (
-    <div
-      className={`group relative h-full overflow-hidden rounded-3xl border border-white/60 bg-white/90 p-7 shadow-[0_20px_50px_-20px_rgba(0,51,88,0.25)] ring-1 ring-navy/5 backdrop-blur-xl transition-all duration-500 hover:-translate-y-1.5 hover:shadow-[0_30px_70px_-25px_rgba(0,190,221,0.35)] ${className}`}
-    >
-      {children}
-    </div>
-  );
-}
-
-function BentoCard({
+function SplitSection({
   eyebrow,
   title,
-  icon,
-  image,
-  accent,
   body,
+  bullets,
+  image,
+  reverse,
 }: {
   eyebrow: string;
   title: string;
-  icon: React.ReactNode;
-  image: string;
-  accent: string;
   body: string;
+  bullets: string[];
+  image: string;
+  reverse: boolean;
 }) {
   return (
-    <CardShell>
-      <div className="flex items-center justify-between">
-        <span className="grid h-12 w-12 place-items-center rounded-2xl bg-cyan text-cyan-foreground shadow-md shadow-cyan/40 ring-4 ring-cyan/15">
-          {icon}
-        </span>
-        <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-navy/50">
-          {eyebrow}
-        </span>
+    <Reveal>
+      <div className={`grid items-center gap-10 md:grid-cols-2 md:gap-16 ${reverse ? "md:[&>div:first-child]:order-2" : ""}`}>
+        <div>
+          <span className="text-[11px] font-semibold uppercase tracking-[0.22em] text-cyan">
+            {eyebrow}
+          </span>
+          <h3 className="mt-3 font-display text-2xl font-extrabold tracking-tight text-navy sm:text-3xl md:text-4xl">
+            {title}
+          </h3>
+          <p className="mt-5 text-base leading-relaxed text-muted-foreground">{body}</p>
+          <ul className="mt-6 space-y-3">
+            {bullets.map((b) => (
+              <li key={b} className="flex items-center gap-3 text-sm font-medium text-navy/85">
+                <span className="grid h-7 w-7 place-items-center rounded-full bg-cyan/15 text-cyan">
+                  <ShieldCheck className="h-4 w-4" />
+                </span>
+                {b}
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div className="group overflow-hidden rounded-3xl bg-secondary soft-shadow transition-transform duration-500 hover:scale-[1.02]">
+          <div className="aspect-video w-full overflow-hidden">
+            <img
+              src={image}
+              alt={title}
+              loading="lazy"
+              className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+            />
+          </div>
+        </div>
       </div>
-      <h3 className="mt-6 font-display text-2xl font-bold text-navy">{title}</h3>
-      <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{body}</p>
-      <div className="mt-5 overflow-hidden rounded-2xl bg-secondary">
-        <img
-          src={image}
-          alt="Vestimenta exigida"
-          loading="lazy"
-          width={1024}
-          height={1024}
-          className="h-44 w-full object-cover transition-transform duration-700 group-hover:scale-105"
-        />
-      </div>
-      <div className="mt-5 inline-flex items-center gap-2 rounded-full bg-destructive/10 px-3 py-1.5 text-xs font-semibold text-destructive">
-        <CircleDot className="h-3 w-3" /> {accent}
-      </div>
-    </CardShell>
-  );
-}
-
-function EpiCard() {
-  const items = [
-    { Icon: HardHat, label: "Capacete" },
-    { Icon: ShieldCheck, label: "Colete" },
-    { Icon: ShieldAlert, label: "Botas" },
-  ];
-  return (
-    <CardShell>
-      <div className="flex items-center justify-between">
-        <span className="grid h-12 w-12 place-items-center rounded-2xl bg-cyan text-cyan-foreground shadow-md shadow-cyan/40 ring-4 ring-cyan/15">
-          <HardHat className="h-6 w-6" />
-        </span>
-        <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-navy/50">
-          02 · EPIs
-        </span>
-      </div>
-      <h3 className="mt-6 font-display text-2xl font-bold text-navy">EPIs Obrigatórios</h3>
-      <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-        Uso obrigatório em todo o pátio operacional.
-      </p>
-      <ul className="mt-6 space-y-3">
-        {items.map(({ Icon, label }) => (
-          <li
-            key={label}
-            className="flex items-center gap-3 rounded-2xl border border-navy/5 bg-secondary/60 px-4 py-3"
-          >
-            <span className="grid h-10 w-10 place-items-center rounded-xl bg-white text-cyan ring-1 ring-cyan/30">
-              <Icon className="h-5 w-5" />
-            </span>
-            <span className="text-sm font-semibold text-navy">{label}</span>
-            <ShieldCheck className="ml-auto h-4 w-4 text-cyan" />
-          </li>
-        ))}
-      </ul>
-    </CardShell>
-  );
-}
-
-function EmergencyCard() {
-  return (
-    <CardShell className="bg-gradient-to-br from-navy to-[oklch(0.27_0.08_247)] text-white">
-      <div className="flex items-center justify-between">
-        <span className="grid h-12 w-12 place-items-center rounded-2xl bg-cyan text-cyan-foreground shadow-md shadow-cyan/40 ring-4 ring-cyan/20">
-          <AlertTriangle className="h-6 w-6" />
-        </span>
-        <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-white/55">
-          03 · Emergência
-        </span>
-      </div>
-      <h3 className="mt-6 font-display text-2xl font-bold">Protocolo de Emergência</h3>
-      <p className="mt-2 text-sm leading-relaxed text-white/75">
-        Ao soar o alarme, mantenha a calma e siga rigorosamente o anfitrião responsável até
-        o ponto de encontro indicado.
-      </p>
-      <div className="mt-6 space-y-2 rounded-2xl border border-white/10 bg-white/5 p-4 backdrop-blur">
-        {["Não se separe do grupo", "Use as rotas sinalizadas", "Aguarde liberação oficial"].map(
-          (t) => (
-            <div key={t} className="flex items-center gap-2 text-sm text-white/85">
-              <span className="h-1.5 w-1.5 rounded-full bg-cyan" /> {t}
-            </div>
-          ),
-        )}
-      </div>
-    </CardShell>
+    </Reveal>
   );
 }
 
@@ -383,3 +339,6 @@ function FooterCol({ title, links }: { title: string; links: string[] }) {
     </div>
   );
 }
+
+/* AlertTriangle imported for potential reuse */
+void AlertTriangle;
