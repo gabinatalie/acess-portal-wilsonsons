@@ -133,17 +133,10 @@ function Index() {
           {/* VIDEO HD */}
           <Reveal delay={120}>
             <div className="mx-auto mt-14 max-w-5xl">
-              <div className="relative aspect-video w-full overflow-hidden rounded-2xl soft-shadow ring-1 ring-navy/5">
-                <iframe
-                  className="absolute inset-0 h-full w-full"
-                  src="https://www.youtube.com/embed/rB6jcirH848?vq=hd1080&hd=1&rel=0&modestbranding=1"
-                  title="Vídeo de Integração de Segurança Wilson Sons"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  allowFullScreen
-                />
-              </div>
+              <YouTubeFacade videoId="rB6jcirH848" title="Vídeo de Integração de Segurança Wilson Sons" />
             </div>
           </Reveal>
+
 
           {/* SPLIT SECTIONS */}
           <div className="mt-24 space-y-24">
