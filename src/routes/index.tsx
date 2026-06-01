@@ -163,7 +163,9 @@ function Index() {
               bullets={["Não se separe do grupo", "Use as rotas sinalizadas", "Aguarde liberação oficial"]}
               image={safetyEmergency.url}
               reverse={false}
+              imageOffset="md:mt-32"
             />
+
           </div>
         </div>
       </section>
