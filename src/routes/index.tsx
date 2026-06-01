@@ -174,11 +174,11 @@ function Index() {
       </section>
 
       {/* AGENDAMENTO — Sticky scroll */}
-      <section id="agendamento" className="relative overflow-hidden bg-secondary/40 dot-grid py-24 md:py-32">
-        <div className="relative mx-auto max-w-7xl px-6 md:px-10">
-          <div className="grid gap-12 md:grid-cols-2 md:gap-16">
-            {/* LEFT — Sticky */}
-            <div className="md:sticky md:top-28 md:self-start">
+      <section id="agendamento" className="relative bg-secondary/40 dot-grid py-24 md:py-32">
+        <div className="relative mx-auto max-w-[1400px] px-6 md:px-10">
+          <div className="grid items-start gap-12 md:grid-cols-5 md:gap-16">
+            {/* LEFT — Sticky (40%) */}
+            <div className="md:col-span-2 md:sticky md:top-32 md:self-start">
               <Reveal>
                 <span className="inline-flex items-center gap-2 rounded-full bg-navy/5 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-navy">
                   <CalendarCheck className="h-3.5 w-3.5" /> Formulário Oficial
@@ -208,18 +208,20 @@ function Index() {
               </Reveal>
             </div>
 
-            {/* RIGHT — Scrollable */}
-            <Reveal delay={120}>
-              <div className="rounded-3xl bg-white p-3 soft-shadow ring-1 ring-white">
-                <iframe
-                  src="https://docs.google.com/forms/d/e/1FAIpQLScRlIx-L5OH76PvOqChTTVgRZF6bL6po1FoQ8DNPl54ZcMCLA/viewform?embedded=true"
-                  className="h-[1300px] w-full rounded-2xl bg-white"
-                  title="Formulário de Agendamento Wilson Sons"
-                >
-                  Carregando…
-                </iframe>
-              </div>
-            </Reveal>
+            {/* RIGHT — Scrollable (60%) */}
+            <div className="md:col-span-3">
+              <Reveal delay={120}>
+                <div className="w-full rounded-3xl bg-white p-3 soft-shadow ring-1 ring-white">
+                  <iframe
+                    src="https://docs.google.com/forms/d/e/1FAIpQLScRlIx-L5OH76PvOqChTTVgRZF6bL6po1FoQ8DNPl54ZcMCLA/viewform?embedded=true"
+                    className="h-[1300px] w-full rounded-2xl bg-white"
+                    title="Formulário de Agendamento Wilson Sons"
+                  >
+                    Carregando…
+                  </iframe>
+                </div>
+              </Reveal>
+            </div>
           </div>
         </div>
       </section>
