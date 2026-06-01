@@ -208,18 +208,20 @@ function Index() {
               </Reveal>
             </div>
 
-            {/* RIGHT — Scrollable */}
-            <Reveal delay={120}>
-              <div className="rounded-3xl bg-white p-3 soft-shadow ring-1 ring-white">
-                <iframe
-                  src="https://docs.google.com/forms/d/e/1FAIpQLScRlIx-L5OH76PvOqChTTVgRZF6bL6po1FoQ8DNPl54ZcMCLA/viewform?embedded=true"
-                  className="h-[1300px] w-full rounded-2xl bg-white"
-                  title="Formulário de Agendamento Wilson Sons"
-                >
-                  Carregando…
-                </iframe>
-              </div>
-            </Reveal>
+            {/* RIGHT — Scrollable (60%) */}
+            <div className="md:col-span-3">
+              <Reveal delay={120}>
+                <div className="w-full rounded-3xl bg-white p-3 soft-shadow ring-1 ring-white">
+                  <iframe
+                    src="https://docs.google.com/forms/d/e/1FAIpQLScRlIx-L5OH76PvOqChTTVgRZF6bL6po1FoQ8DNPl54ZcMCLA/viewform?embedded=true"
+                    className="h-[1300px] w-full rounded-2xl bg-white"
+                    title="Formulário de Agendamento Wilson Sons"
+                  >
+                    Carregando…
+                  </iframe>
+                </div>
+              </Reveal>
+            </div>
           </div>
         </div>
       </section>
