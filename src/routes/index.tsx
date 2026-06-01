@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useState } from "react";
 import {
   AlertTriangle,
   CalendarCheck,
@@ -10,6 +11,7 @@ import {
   Home,
   Anchor,
   ExternalLink,
+  Play,
 } from "lucide-react";
 import heroAsset from "@/assets/hero-port-new.jpg.asset.json";
 import safetyEpi from "@/assets/safety-epi.webp.asset.json";
@@ -131,17 +133,10 @@ function Index() {
           {/* VIDEO HD */}
           <Reveal delay={120}>
             <div className="mx-auto mt-14 max-w-5xl">
-              <div className="relative aspect-video w-full overflow-hidden rounded-2xl soft-shadow ring-1 ring-navy/5">
-                <iframe
-                  className="absolute inset-0 h-full w-full"
-                  src="https://www.youtube.com/embed/rB6jcirH848?vq=hd1080&hd=1&rel=0&modestbranding=1"
-                  title="Vídeo de Integração de Segurança Wilson Sons"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  allowFullScreen
-                />
-              </div>
+              <YouTubeFacade videoId="rB6jcirH848" title="Vídeo de Integração de Segurança Wilson Sons" />
             </div>
           </Reveal>
+
 
           {/* SPLIT SECTIONS */}
           <div className="mt-24 space-y-24">
@@ -168,7 +163,9 @@ function Index() {
               bullets={["Não se separe do grupo", "Use as rotas sinalizadas", "Aguarde liberação oficial"]}
               image={safetyEmergency.url}
               reverse={false}
+              imageOffset="md:mt-32"
             />
+
           </div>
         </div>
       </section>
@@ -280,6 +277,7 @@ function SplitSection({
   bullets,
   image,
   reverse,
+  imageOffset = "",
 }: {
   eyebrow: string;
   title: string;
@@ -287,10 +285,11 @@ function SplitSection({
   bullets: string[];
   image: string;
   reverse: boolean;
+  imageOffset?: string;
 }) {
   return (
     <Reveal>
-      <div className={`grid items-center gap-10 md:grid-cols-2 md:gap-16 ${reverse ? "md:[&>div:first-child]:order-2" : ""}`}>
+      <div className={`grid items-start gap-10 md:grid-cols-2 md:gap-16 ${reverse ? "md:[&>div:first-child]:order-2" : ""}`}>
         <div>
           <span className="text-[11px] font-semibold uppercase tracking-[0.22em] text-cyan">
             {eyebrow}
@@ -310,8 +309,8 @@ function SplitSection({
             ))}
           </ul>
         </div>
-        <div className="group overflow-hidden rounded-3xl bg-secondary soft-shadow transition-transform duration-500 hover:scale-[1.02]">
-          <div className="aspect-video w-full overflow-hidden">
+        <div className={`group overflow-hidden rounded-3xl bg-white soft-shadow ${imageOffset}`}>
+          <div className="aspect-video w-full overflow-hidden bg-white">
             <img
               src={image}
               alt={title}
@@ -324,6 +323,47 @@ function SplitSection({
     </Reveal>
   );
 }
+
+function YouTubeFacade({ videoId, title }: { videoId: string; title: string }) {
+  const [playing, setPlaying] = useState(false);
+  const poster = `https://i.ytimg.com/vi/${videoId}/maxresdefault.jpg`;
+  return (
+    <div className="relative aspect-video w-full overflow-hidden rounded-2xl soft-shadow ring-1 ring-navy/5 bg-navy">
+      {playing ? (
+        <iframe
+          className="absolute inset-0 h-full w-full"
+          src={`https://www.youtube.com/embed/${videoId}?autoplay=1&vq=hd1080&hd=1&rel=0&modestbranding=1`}
+          title={title}
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowFullScreen
+        />
+      ) : (
+        <button
+          type="button"
+          onClick={() => setPlaying(true)}
+          className="group absolute inset-0 h-full w-full"
+          aria-label={`Reproduzir: ${title}`}
+        >
+          <img
+            src={poster}
+            alt={title}
+            loading="lazy"
+            onError={(e) => {
+              (e.currentTarget as HTMLImageElement).src = `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`;
+            }}
+            className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+          />
+          <span className="absolute inset-0 bg-gradient-to-t from-navy/40 via-transparent to-transparent" />
+          <span className="absolute left-1/2 top-1/2 grid h-20 w-20 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full bg-cyan text-cyan-foreground shadow-2xl shadow-cyan/40 transition-transform duration-300 group-hover:scale-110">
+            <Play className="h-8 w-8 translate-x-0.5 fill-current" />
+          </span>
+        </button>
+      )}
+    </div>
+  );
+}
+
+
 
 function FooterCol({ title, links }: { title: string; links: string[] }) {
   return (
