@@ -74,6 +74,13 @@ html { scroll-behavior: smooth; }
   background-size: 22px 22px;
 }
 
+.radial-depth {
+  background-image:
+    radial-gradient(1200px 600px at 15% 0%, rgba(0, 190, 221, 0.10), transparent 60%),
+    radial-gradient(900px 500px at 90% 30%, rgba(0, 51, 88, 0.08), transparent 60%),
+    radial-gradient(800px 600px at 50% 100%, rgba(0, 190, 221, 0.06), transparent 70%);
+}
+
 .hero-title-gradient {
   background: linear-gradient(135deg, #ffffff 0%, #00BEDD 100%);
   -webkit-background-clip: text;
@@ -83,6 +90,26 @@ html { scroll-behavior: smooth; }
 
 .soft-shadow {
   box-shadow: 0 20px 60px -25px rgba(0, 51, 88, 0.25), 0 8px 24px -12px rgba(0, 190, 221, 0.12);
+}
+
+.cyan-glow-hover {
+  transition: box-shadow 300ms ease, transform 300ms ease, border-color 300ms ease;
+  border: 1px solid transparent;
+}
+.cyan-glow-hover:hover {
+  border-color: rgba(0, 190, 221, 0.55);
+  box-shadow:
+    0 0 0 1px rgba(0, 190, 221, 0.35),
+    0 0 28px rgba(0, 190, 221, 0.35),
+    0 20px 60px -25px rgba(0, 51, 88, 0.25);
+}
+
+@keyframes status-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.55; transform: scale(0.85); }
+}
+.status-dot {
+  animation: status-pulse 2s ease-in-out infinite;
 }
 
 :root {
