@@ -196,7 +196,7 @@ function Index() {
       </section>
 
       {/* AGENDAMENTO — Sticky scroll */}
-      <section id="agendamento" className="relative bg-secondary/40 dot-grid py-24 md:py-32">
+      <section id="agendamento" className="relative bg-secondary/40 dot-grid radial-depth py-24 md:py-32">
         <div className="relative mx-auto max-w-[1400px] px-6 md:px-10">
           <div className="grid items-start gap-12 md:grid-cols-5 md:gap-16">
             {/* LEFT — Sticky (40%) */}
@@ -233,15 +233,7 @@ function Index() {
             {/* RIGHT — Scrollable (60%) */}
             <div className="md:col-span-3">
               <Reveal delay={120}>
-                <div className="w-full rounded-3xl bg-white p-3 soft-shadow ring-1 ring-white">
-                  <iframe
-                    src="https://docs.google.com/forms/d/e/1FAIpQLScRlIx-L5OH76PvOqChTTVgRZF6bL6po1FoQ8DNPl54ZcMCLA/viewform?embedded=true"
-                    className="h-[1300px] w-full rounded-2xl bg-white"
-                    title="Formulário de Agendamento Wilson Sons"
-                  >
-                    Carregando…
-                  </iframe>
-                </div>
+                <SchedulingPanel />
               </Reveal>
             </div>
           </div>
