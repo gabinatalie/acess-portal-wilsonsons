@@ -140,7 +140,7 @@ function Index() {
       </section>
 
       {/* INTEGRAÇÃO — split sections */}
-      <section id="integracao" className="relative dot-grid">
+      <section id="integracao" className="relative dot-grid radial-depth">
         <div className="mx-auto max-w-7xl px-6 py-24 md:px-10 md:py-32">
           <Reveal>
             <div className="mx-auto max-w-2xl text-center">
