@@ -326,7 +326,7 @@ function SplitSection({
             ))}
           </ul>
         </div>
-        <div className={`group overflow-hidden rounded-3xl bg-white soft-shadow ${imageOffset}`}>
+        <div className={`group overflow-hidden rounded-3xl bg-white soft-shadow cyan-glow-hover ${imageOffset}`}>
           <div className="aspect-video w-full overflow-hidden bg-white">
             <img
               src={image}
