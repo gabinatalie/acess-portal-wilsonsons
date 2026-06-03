@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
+import { useState, type ReactNode } from "react";
 import {
   AlertTriangle,
   CalendarCheck,
@@ -12,6 +12,12 @@ import {
   Anchor,
   ExternalLink,
   Play,
+  Activity,
+  Waves,
+  MapPin,
+  CheckCircle2,
+  QrCode,
+  User as UserIcon,
 } from "lucide-react";
 import heroAsset from "@/assets/hero-port-new.jpg.asset.json";
 import safetyEpi from "@/assets/safety-epi.webp.asset.json";
@@ -52,8 +58,28 @@ export const Route = createFileRoute("/")({
 function Index() {
   return (
     <div className="min-h-screen bg-background font-sans text-foreground antialiased">
+      {/* STATUS BAR — Contextual operational widget */}
+      <div className="relative z-[60] border-b border-navy/10 bg-navy text-white">
+        <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-y-1 px-6 py-2 text-[11px] font-medium tracking-wide md:px-10 md:text-xs">
+          <div className="flex items-center gap-2">
+            <span className="relative grid h-2.5 w-2.5 place-items-center">
+              <span className="absolute inset-0 rounded-full bg-emerald-400/60 status-dot" />
+              <span className="relative h-2 w-2 rounded-full bg-emerald-400" />
+            </span>
+            <span className="uppercase tracking-[0.18em] text-white/70">Ao vivo</span>
+          </div>
+          <div className="flex flex-wrap items-center gap-x-5 gap-y-1 text-white/85">
+            <span className="inline-flex items-center gap-1.5"><MapPin className="h-3.5 w-3.5 text-cyan" /> Unidade: <strong className="font-semibold text-white">Tecon Santos</strong></span>
+            <span className="hidden h-3 w-px bg-white/20 md:inline-block" />
+            <span className="inline-flex items-center gap-1.5"><Activity className="h-3.5 w-3.5 text-cyan" /> Status: <strong className="font-semibold text-emerald-300">Operação Normal</strong></span>
+            <span className="hidden h-3 w-px bg-white/20 md:inline-block" />
+            <span className="inline-flex items-center gap-1.5"><Waves className="h-3.5 w-3.5 text-cyan" /> Maré: <strong className="font-semibold text-white">0.8m</strong></span>
+          </div>
+        </div>
+      </div>
+
       {/* NAV — Glassmorphism */}
-      <header className="sticky top-0 z-50 border-b border-white/40 bg-white/60 backdrop-blur-md supports-[backdrop-filter]:bg-white/55 shadow-[0_4px_30px_-12px_rgba(0,51,88,0.08)]">
+      <header className="sticky top-0 z-50 border-b border-white/40 bg-white/55 backdrop-blur-xl supports-[backdrop-filter]:bg-white/45 shadow-[0_4px_30px_-12px_rgba(0,51,88,0.08)]">
         <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-3 md:px-10">
           <a href="#top" className="flex items-center px-2">
             <img src={wilsonLogo} alt="Wilson, Sons" className="h-16 w-auto" />
@@ -114,7 +140,7 @@ function Index() {
       </section>
 
       {/* INTEGRAÇÃO — split sections */}
-      <section id="integracao" className="relative dot-grid">
+      <section id="integracao" className="relative dot-grid radial-depth">
         <div className="mx-auto max-w-7xl px-6 py-24 md:px-10 md:py-32">
           <Reveal>
             <div className="mx-auto max-w-2xl text-center">
@@ -170,7 +196,7 @@ function Index() {
       </section>
 
       {/* AGENDAMENTO — Sticky scroll */}
-      <section id="agendamento" className="relative bg-secondary/40 dot-grid py-24 md:py-32">
+      <section id="agendamento" className="relative bg-secondary/40 dot-grid radial-depth py-24 md:py-32">
         <div className="relative mx-auto max-w-[1400px] px-6 md:px-10">
           <div className="grid items-start gap-12 md:grid-cols-5 md:gap-16">
             {/* LEFT — Sticky (40%) */}
@@ -207,15 +233,7 @@ function Index() {
             {/* RIGHT — Scrollable (60%) */}
             <div className="md:col-span-3">
               <Reveal delay={120}>
-                <div className="w-full rounded-3xl bg-white p-3 soft-shadow ring-1 ring-white">
-                  <iframe
-                    src="https://docs.google.com/forms/d/e/1FAIpQLScRlIx-L5OH76PvOqChTTVgRZF6bL6po1FoQ8DNPl54ZcMCLA/viewform?embedded=true"
-                    className="h-[1300px] w-full rounded-2xl bg-white"
-                    title="Formulário de Agendamento Wilson Sons"
-                  >
-                    Carregando…
-                  </iframe>
-                </div>
+                <SchedulingPanel />
               </Reveal>
             </div>
           </div>
@@ -308,7 +326,7 @@ function SplitSection({
             ))}
           </ul>
         </div>
-        <div className={`group overflow-hidden rounded-3xl bg-white soft-shadow ${imageOffset}`}>
+        <div className={`group overflow-hidden rounded-3xl bg-white soft-shadow cyan-glow-hover ${imageOffset}`}>
           <div className="aspect-video w-full overflow-hidden bg-white">
             <img
               src={image}
@@ -377,6 +395,116 @@ function FooterCol({ title, links }: { title: string; links: string[] }) {
           </li>
         ))}
       </ul>
+    </div>
+  );
+}
+
+/* ---------- Scheduling panel with Digital Visitor Pass ---------- */
+
+function SchedulingPanel() {
+  const [submitted, setSubmitted] = useState(false);
+  const [name, setName] = useState("");
+  const [date, setDate] = useState("");
+
+  if (submitted) {
+    const passId = `WS-${Date.now().toString(36).toUpperCase().slice(-6)}`;
+    const qrPayload = encodeURIComponent(
+      `WILSON-SONS|PASS:${passId}|NAME:${name || "VISITANTE"}|DATE:${date || "A AGENDAR"}|UNIT:TECON-SANTOS`,
+    );
+    const qrSrc = `https://api.qrserver.com/v1/create-qr-code/?size=260x260&margin=0&qzone=1&data=${qrPayload}`;
+    const today = new Date().toLocaleDateString("pt-BR");
+
+    return (
+      <div className="relative w-full overflow-hidden rounded-3xl bg-gradient-to-br from-navy via-navy to-[#001f3f] p-1 soft-shadow ring-1 ring-cyan/30">
+        <div className="absolute -right-20 -top-20 h-64 w-64 rounded-full bg-cyan/20 blur-3xl" />
+        <div className="absolute -left-16 -bottom-16 h-56 w-56 rounded-full bg-cyan/10 blur-3xl" />
+        <div className="relative rounded-[22px] bg-navy/70 backdrop-blur-xl p-8 md:p-10 text-white">
+          <div className="flex items-center justify-between border-b border-white/10 pb-5">
+            <div className="flex items-center gap-3">
+              <div className="rounded-lg bg-white p-2">
+                <img src={wilsonLogo} alt="Wilson, Sons" className="h-7 w-auto" />
+              </div>
+              <div>
+                <p className="text-[10px] uppercase tracking-[0.22em] text-cyan">Digital Visitor Pass</p>
+                <p className="text-sm font-semibold">Wilson Sons · Acesso Operacional</p>
+              </div>
+            </div>
+            <span className="inline-flex items-center gap-1.5 rounded-full border border-emerald-400/40 bg-emerald-400/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-wider text-emerald-300">
+              <CheckCircle2 className="h-3.5 w-3.5" /> Confirmado
+            </span>
+          </div>
+
+          <div className="mt-8 grid items-center gap-8 md:grid-cols-[260px_1fr]">
+            <div className="mx-auto rounded-2xl bg-white p-4 shadow-2xl shadow-cyan/20">
+              <img src={qrSrc} alt="QR Code do credenciamento" className="h-[220px] w-[220px]" />
+              <p className="mt-2 text-center text-[10px] font-mono tracking-widest text-navy/70">{passId}</p>
+            </div>
+            <div className="space-y-4 text-sm">
+              <PassRow icon={<UserIcon className="h-4 w-4" />} label="Visitante" value={name || "—"} />
+              <PassRow icon={<CalendarCheck className="h-4 w-4" />} label="Data prevista" value={date || "A confirmar"} />
+              <PassRow icon={<MapPin className="h-4 w-4" />} label="Unidade" value="Tecon Santos" />
+              <PassRow icon={<ShieldCheck className="h-4 w-4" />} label="Integração" value="Pendente · realizar na portaria" />
+              <PassRow icon={<QrCode className="h-4 w-4" />} label="Emitido em" value={today} />
+            </div>
+          </div>
+
+          <div className="mt-8 flex flex-wrap items-center justify-between gap-3 border-t border-dashed border-white/15 pt-5 text-[11px] text-white/60">
+            <span>Apresente este passe na portaria junto a um documento com foto.</span>
+            <button
+              type="button"
+              onClick={() => setSubmitted(false)}
+              className="rounded-full border border-white/20 px-3 py-1 text-white/80 hover:bg-white/10"
+            >
+              Novo agendamento
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="w-full rounded-3xl bg-white/80 p-3 soft-shadow ring-1 ring-white backdrop-blur-xl">
+      <div className="flex flex-wrap items-center gap-3 px-3 py-2">
+        <input
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          placeholder="Seu nome (para o passe digital)"
+          className="min-w-[200px] flex-1 rounded-lg border border-navy/10 bg-white/70 px-3 py-2 text-sm outline-none focus:border-cyan focus:ring-2 focus:ring-cyan/20"
+        />
+        <input
+          type="date"
+          value={date}
+          onChange={(e) => setDate(e.target.value)}
+          className="rounded-lg border border-navy/10 bg-white/70 px-3 py-2 text-sm outline-none focus:border-cyan focus:ring-2 focus:ring-cyan/20"
+        />
+        <button
+          type="button"
+          onClick={() => setSubmitted(true)}
+          className="rounded-lg bg-cyan px-4 py-2 text-sm font-semibold text-cyan-foreground shadow-md shadow-cyan/30 transition hover:bg-cyan/90"
+        >
+          Já enviei o formulário
+        </button>
+      </div>
+      <iframe
+        src="https://docs.google.com/forms/d/e/1FAIpQLScRlIx-L5OH76PvOqChTTVgRZF6bL6po1FoQ8DNPl54ZcMCLA/viewform?embedded=true"
+        className="h-[1300px] w-full rounded-2xl bg-white"
+        title="Formulário de Agendamento Wilson Sons"
+      >
+        Carregando…
+      </iframe>
+    </div>
+  );
+}
+
+function PassRow({ icon, label, value }: { icon: ReactNode; label: string; value: string }) {
+  return (
+    <div className="flex items-start gap-3">
+      <span className="mt-0.5 grid h-8 w-8 place-items-center rounded-full bg-cyan/15 text-cyan">{icon}</span>
+      <div>
+        <p className="text-[10px] uppercase tracking-[0.18em] text-white/50">{label}</p>
+        <p className="text-base font-semibold text-white">{value}</p>
+      </div>
     </div>
   );
 }
