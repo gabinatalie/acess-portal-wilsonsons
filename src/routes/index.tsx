@@ -58,8 +58,28 @@ export const Route = createFileRoute("/")({
 function Index() {
   return (
     <div className="min-h-screen bg-background font-sans text-foreground antialiased">
+      {/* STATUS BAR — Contextual operational widget */}
+      <div className="relative z-[60] border-b border-navy/10 bg-navy text-white">
+        <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-y-1 px-6 py-2 text-[11px] font-medium tracking-wide md:px-10 md:text-xs">
+          <div className="flex items-center gap-2">
+            <span className="relative grid h-2.5 w-2.5 place-items-center">
+              <span className="absolute inset-0 rounded-full bg-emerald-400/60 status-dot" />
+              <span className="relative h-2 w-2 rounded-full bg-emerald-400" />
+            </span>
+            <span className="uppercase tracking-[0.18em] text-white/70">Ao vivo</span>
+          </div>
+          <div className="flex flex-wrap items-center gap-x-5 gap-y-1 text-white/85">
+            <span className="inline-flex items-center gap-1.5"><MapPin className="h-3.5 w-3.5 text-cyan" /> Unidade: <strong className="font-semibold text-white">Tecon Santos</strong></span>
+            <span className="hidden h-3 w-px bg-white/20 md:inline-block" />
+            <span className="inline-flex items-center gap-1.5"><Activity className="h-3.5 w-3.5 text-cyan" /> Status: <strong className="font-semibold text-emerald-300">Operação Normal</strong></span>
+            <span className="hidden h-3 w-px bg-white/20 md:inline-block" />
+            <span className="inline-flex items-center gap-1.5"><Waves className="h-3.5 w-3.5 text-cyan" /> Maré: <strong className="font-semibold text-white">0.8m</strong></span>
+          </div>
+        </div>
+      </div>
+
       {/* NAV — Glassmorphism */}
-      <header className="sticky top-0 z-50 border-b border-white/40 bg-white/60 backdrop-blur-md supports-[backdrop-filter]:bg-white/55 shadow-[0_4px_30px_-12px_rgba(0,51,88,0.08)]">
+      <header className="sticky top-0 z-50 border-b border-white/40 bg-white/55 backdrop-blur-xl supports-[backdrop-filter]:bg-white/45 shadow-[0_4px_30px_-12px_rgba(0,51,88,0.08)]">
         <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-3 md:px-10">
           <a href="#top" className="flex items-center px-2">
             <img src={wilsonLogo} alt="Wilson, Sons" className="h-16 w-auto" />
