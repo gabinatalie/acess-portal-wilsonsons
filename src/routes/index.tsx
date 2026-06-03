@@ -497,7 +497,7 @@ function SchedulingPanel() {
   );
 }
 
-function PassRow({ icon, label, value }: { icon: React.ReactNode; label: string; value: string }) {
+function PassRow({ icon, label, value }: { icon: ReactNode; label: string; value: string }) {
   return (
     <div className="flex items-start gap-3">
       <span className="mt-0.5 grid h-8 w-8 place-items-center rounded-full bg-cyan/15 text-cyan">{icon}</span>
