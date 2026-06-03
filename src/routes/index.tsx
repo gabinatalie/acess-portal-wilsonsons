@@ -12,6 +12,12 @@ import {
   Anchor,
   ExternalLink,
   Play,
+  Activity,
+  Waves,
+  MapPin,
+  CheckCircle2,
+  QrCode,
+  User as UserIcon,
 } from "lucide-react";
 import heroAsset from "@/assets/hero-port-new.jpg.asset.json";
 import safetyEpi from "@/assets/safety-epi.webp.asset.json";
