@@ -148,7 +148,7 @@ function Index() {
       </section>
 
       {/* INTEGRAÇÃO — split sections */}
-      <section id="integracao" className="relative dot-grid radial-depth">
+      <section id="integracao" className="relative bg-background dot-grid">
         <div className="mx-auto max-w-7xl px-6 py-24 md:px-10 md:py-32">
           <Reveal>
             <div className="mx-auto max-w-2xl text-center">
@@ -305,7 +305,7 @@ function Index() {
       </section>
 
       {/* AGENDAMENTO — Sticky scroll */}
-      <section id="agendamento" className="relative bg-secondary/40 dot-grid radial-depth py-24 md:py-32">
+      <section id="agendamento" className="relative bg-secondary/40 py-24 md:py-32">
         <div className="relative mx-auto max-w-[1400px] px-6 md:px-10">
           <div className="grid items-start gap-12 md:grid-cols-5 md:gap-16">
             {/* LEFT — Sticky (40%) */}
