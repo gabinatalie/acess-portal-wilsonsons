@@ -203,6 +203,107 @@ function Index() {
         </div>
       </section>
 
+      {/* PREPARE SUA CHEGADA — Logistics */}
+      <section id="chegada" className="relative dot-grid radial-depth py-24 md:py-32">
+        <div className="mx-auto max-w-7xl px-6 md:px-10">
+          <Reveal>
+            <div className="mx-auto max-w-2xl text-center">
+              <span className="text-xs font-semibold uppercase tracking-[0.22em] text-cyan">
+                Logística & Localização
+              </span>
+              <h2 className="mt-3 font-display text-3xl font-extrabold tracking-tight text-navy sm:text-4xl md:text-5xl">
+                Prepare sua Chegada
+              </h2>
+              <p className="mt-4 text-muted-foreground">
+                Confira o endereço da unidade onde será sua visita e acesse a rota direta no Google Maps.
+              </p>
+            </div>
+          </Reveal>
+
+          <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {[
+              {
+                city: "Salvador",
+                unit: "Tecon Salvador",
+                address: "Av. da França, s/n — Comércio, Salvador — BA, 40010-000",
+                maps: "https://www.google.com/maps/search/?api=1&query=Tecon+Salvador+Wilson+Sons",
+              },
+              {
+                city: "Rio Grande",
+                unit: "Tecon Rio Grande",
+                address: "Av. Honório Bicalho, s/n — Distrito Industrial, Rio Grande — RS, 96204-700",
+                maps: "https://www.google.com/maps/search/?api=1&query=Tecon+Rio+Grande+Wilson+Sons",
+              },
+              {
+                city: "Guarujá",
+                unit: "Brasco Guarujá",
+                address: "Av. Santos Dumont, s/n — Vicente de Carvalho, Guarujá — SP, 11460-000",
+                maps: "https://www.google.com/maps/search/?api=1&query=Brasco+Guaruj%C3%A1+Wilson+Sons",
+              },
+              {
+                city: "Santo André",
+                unit: "Wilson Sons Logística",
+                address: "Rod. Índio Tibiriçá, km 47 — Santo André — SP, 09225-000",
+                maps: "https://www.google.com/maps/search/?api=1&query=Wilson+Sons+Log%C3%ADstica+Santo+Andr%C3%A9",
+              },
+            ].map((u, i) => (
+              <Reveal key={u.city} delay={i * 80}>
+                <div className="group flex h-full flex-col rounded-2xl bg-white p-6 soft-shadow ring-1 ring-navy/5 cyan-glow-hover transition-transform hover:-translate-y-1">
+                  <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-cyan/15 text-cyan">
+                    <MapPin className="h-5 w-5" />
+                  </span>
+                  <p className="mt-4 text-[11px] font-semibold uppercase tracking-[0.18em] text-cyan">{u.unit}</p>
+                  <h3 className="mt-1 font-display text-xl font-extrabold text-navy">{u.city}</h3>
+                  <p className="mt-3 flex-1 text-sm leading-relaxed text-muted-foreground">{u.address}</p>
+                  <a
+                    href={u.maps}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-5 inline-flex items-center justify-center gap-2 rounded-full bg-navy px-4 py-2 text-sm font-semibold text-white transition hover:bg-navy/90"
+                  >
+                    <MapPin className="h-4 w-4 text-cyan" /> Ver no Google Maps
+                  </a>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+
+          <Reveal delay={120}>
+            <div className="mx-auto mt-20 max-w-3xl">
+              <div className="mb-6 flex items-center justify-center gap-2 text-xs font-semibold uppercase tracking-[0.22em] text-cyan">
+                <HelpCircle className="h-4 w-4" /> Perguntas Frequentes
+              </div>
+              <Accordion type="single" collapsible className="overflow-hidden rounded-2xl bg-white ring-1 ring-navy/5 soft-shadow">
+                <AccordionItem value="epi" className="border-navy/10 px-6">
+                  <AccordionTrigger className="text-left font-semibold text-navy hover:no-underline">
+                    Preciso levar meus próprios EPIs?
+                  </AccordionTrigger>
+                  <AccordionContent className="text-muted-foreground">
+                    Não. A Wilson Sons fornece todo o kit de EPI (capacete, óculos, protetor auricular e colete) na portaria após a integração. Apenas o calçado fechado de segurança deve ser de uso pessoal e estar em boas condições.
+                  </AccordionContent>
+                </AccordionItem>
+                <AccordionItem value="park" className="border-navy/10 px-6">
+                  <AccordionTrigger className="text-left font-semibold text-navy hover:no-underline">
+                    Há estacionamento disponível para visitantes?
+                  </AccordionTrigger>
+                  <AccordionContent className="text-muted-foreground">
+                    Sim. Todas as unidades dispõem de área de estacionamento para visitantes, mediante apresentação do credenciamento aprovado e documento com foto na portaria de acesso.
+                  </AccordionContent>
+                </AccordionItem>
+                <AccordionItem value="photo" className="border-b-0 px-6">
+                  <AccordionTrigger className="text-left font-semibold text-navy hover:no-underline">
+                    É permitido tirar fotos dentro do terminal?
+                  </AccordionTrigger>
+                  <AccordionContent className="text-muted-foreground">
+                    Por questões de segurança operacional e portuária, fotografias e filmagens só são permitidas mediante autorização prévia da equipe de Comunicação Corporativa Wilson Sons.
+                  </AccordionContent>
+                </AccordionItem>
+              </Accordion>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
       {/* AGENDAMENTO — Sticky scroll */}
       <section id="agendamento" className="relative bg-secondary/40 dot-grid radial-depth py-24 md:py-32">
         <div className="relative mx-auto max-w-[1400px] px-6 md:px-10">
