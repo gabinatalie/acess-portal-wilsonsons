@@ -204,7 +204,7 @@ function Index() {
       </section>
 
       {/* PREPARE SUA CHEGADA — Logistics */}
-      <section id="chegada" className="relative dot-grid radial-depth py-24 md:py-32">
+      <section id="chegada" className="relative bg-background dot-grid py-24 md:py-32">
         <div className="mx-auto max-w-7xl px-6 md:px-10">
           <Reveal>
             <div className="mx-auto max-w-2xl text-center">
