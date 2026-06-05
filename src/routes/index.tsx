@@ -18,6 +18,7 @@ import {
   CheckCircle2,
   QrCode,
   User as UserIcon,
+  HelpCircle,
 } from "lucide-react";
 import heroAsset from "@/assets/hero-port-new.jpg.asset.json";
 import safetyEpi from "@/assets/safety-epi.webp.asset.json";
@@ -26,6 +27,13 @@ import safetyEmergency from "@/assets/safety-emergency.png.asset.json";
 import wilsonLogo from "@/assets/wilson-sons-logo.png";
 import { Button } from "@/components/ui/button";
 import { Reveal } from "@/components/Reveal";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+
 
 export const Route = createFileRoute("/")({
   head: () => ({
